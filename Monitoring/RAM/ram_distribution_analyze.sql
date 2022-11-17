@@ -62,7 +62,7 @@ set @sqlstring='SELECT  t1.[row#]
       ,t2.[value]
       ,t2.[RecommendedMinimum]
       ,t2.[collection_date]
-	  ,t1.[value]-t2.[value] as ''delta''
+	  ,t2.[value]-t1.[value] as ''delta''
   FROM ['+@DatabaseAnalyze+'].['+@SchemaAnalyze+'].['+@PerfAnalyze+'] t1
   join ['+@DatabaseAnalyze+'].['+@SchemaAnalyze+'].['+@PerfAnalyze+'] t2
   --on t2.row#=t1.row# and t2.countername=t1.countername
