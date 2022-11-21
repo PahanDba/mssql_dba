@@ -16,7 +16,7 @@ GO
   SQL Server Versions: 2014 onwards
 ------------------------------------------------------------------------------
   Written by Pavel A. Polikov
-  https://github.com/PahanDba/mssql_dba/tree/master
+  https://github.com/PahanDba/mssql_dba
 
   The original script is taken from
   https://stackoverflow.com/questions/64702115/slow-performance-in-sql-2014-in-select-without-where-claUSE

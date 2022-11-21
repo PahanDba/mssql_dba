@@ -26,7 +26,7 @@ as
   
   SQL Server Versions: 2014 onwards
 ------------------------------------------------------------------------------
- Written by Pavel A. Polikov
+ Written by Pavel A. Polikov https://github.com/PahanDba/mssql_dba
  The original script is taken from
 -- SQL Server 2019 Diagnostic Information Queries
 -- Glenn Berry 

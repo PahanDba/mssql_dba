@@ -1,3 +1,4 @@
+--https://github.com/PahanDba/mssql_dba
 --The script checks for data backlog on secondary replicas of availability groups. 
 --When data on the secondary is more than 20 GB behind, or more than 60 minutes and 20 GB behind. 
 --The script sends a warning by mail. To do this, you need to insert the script into the job in SQLServer Agent, specify the valid @profile_name and @recipients.
