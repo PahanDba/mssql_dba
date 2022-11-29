@@ -27,6 +27,8 @@ ALTER PROCEDURE [dbo].[quick_update_stats]
  The script is created without incremental statistics, without partitioning.
  You can specify to update statistics with fullscan.   
 
+ Fix 2022-11-29 Removed duplicate values in the output.
+
    Example: 
    exec dbo.quick_update_stats @database='sqlnexus', @sql_object='[dbo].[test1]' ,@fullscan=0, @maxdop=1
    exec dbo.quick_update_stats @database='sqlnexus', @sql_object='[dbo].[test1]' ,@fullscan=1, @maxdop=1
@@ -141,7 +143,7 @@ insert into #object_maintenance_end (name_schema, name_object, name_stat)
 exec (@sqlstrall)
 --create script update statistics
 DECLARE sp_complete_cursor_end  CURSOR FAST_FORWARD FOR 
-select name_schema, name_object, name_stat from #object_maintenance_end 
+select name_schema, name_object, name_stat from #object_maintenance_end group by name_schema, name_object, name_stat order by name_stat
 OPEN sp_complete_cursor_end
 FETCH NEXT FROM sp_complete_cursor_end INTO @schema, @tbl, @stat
 WHILE @@FETCH_STATUS = 0
