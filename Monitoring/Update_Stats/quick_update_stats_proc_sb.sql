@@ -22,6 +22,7 @@ ALTER PROCEDURE [dbo].[quick_update_stats_proc_sb]
  Written by Pavel A. Polikov https://github.com/PahanDba/mssql_dba
 
 Create 2022-12-18
+Fix 2022-12-19: Changed the name of the procedure in the example.
 
 Purpose: updating the statistics of objects used in the procedure.
 Objects that are used in the 1st level procedures in the source procedure are taken into account.
@@ -34,14 +35,14 @@ The procedure does not take into account incremental statistics and partitioning
 Operation modes of the procedure:
 1. A script is created to update the statistics, which must be executed manually in SSMS.
 Launch example
-exec master.dbo.quick_update_stats_sb @database='sqlnexus', @sql_object='[dbo].[test1]' ,@fullscan=0, @maxdop=1
+exec master.dbo.quick_update_stats_proc_sb @database='sqlnexus', @sql_object='[dbo].[test1]' ,@fullscan=0, @maxdop=1
 @database - the name of the database where the procedure is located
 @sql_object - the schema and name of the procedure whose object statistics are to be updated
 @fullscan - use fullscan option when updating statistics
 @maxdop - number of threads to update this statistic
 2. A list of statistics is created in the table and the statistics are updated using the service broker.
 Launch example
-exec master.dbo.quick_update_stats_sb @database='sqlnexus', @sql_object='[dbo].[test1]' ,@fullscan=0, @maxdop=1, @sb=1, @database_out='sbdbname', @sch_out ='dbo', @tbl_out='logout'
+exec master.dbo.quick_update_stats_proc_sb @database='sqlnexus', @sql_object='[dbo].[test1]' ,@fullscan=0, @maxdop=1, @sb=1, @database_out='sbdbname', @sch_out ='dbo', @tbl_out='logout'
 @database - the name of the database containing the procedure whose objects are to be updated
 @sql_object - the schema and name of the procedure whose object statistics are to be updated
 @fullscan - use fullscan option when updating statistics
