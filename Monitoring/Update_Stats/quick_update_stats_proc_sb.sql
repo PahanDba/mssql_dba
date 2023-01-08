@@ -23,6 +23,7 @@ ALTER PROCEDURE [dbo].[quick_update_stats_proc_sb]
 
 Create 2022-12-18
 Fix 2022-12-19: Changed the name of the procedure in the example.
+Fix 2023-01-08: Changed scripts displaying information about the updated statistics and the one that is being processed.
 
 Purpose: updating the statistics of objects used in the procedure.
 Objects that are used in the 1st level procedures in the source procedure are taken into account.
@@ -594,10 +595,18 @@ if @sb=1
 					FROM ['+@database_out+'].['+@sch_out+'].['+@tbl_out+']'
 				print @sqlstrall
 				print '--================================================='
-				print '--Script to get a list of statistics that have already been updated.'
+				print '--Script to get a list of statistics that have already been updated and are being updated.'
+				print '--================================================='
 				set @sqlstrall='SELECT [id], [name_schema], [name_object], [name_stat], [begin_time], [end_time]
 					FROM ['+@database_out+'].['+@sch_out+'].['+@tbl_out_print+']'
 				print @sqlstrall
+				print '--================================================='
+				print '--Script to get a list of statistics that are currently being updated.'
+				print '--================================================='
+				set @sqlstrall='SELECT [id], [name_schema], [name_object], [name_stat], [begin_time], [end_time]
+					FROM ['+@database_out+'].['+@sch_out+'].['+@tbl_out_print+'] where [end_time] is null'
+				print @sqlstrall
+
 				print '--================================================='
 				print '--Script to change the number of service broker threads.'
 				print '/*================================================='
